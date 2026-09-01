@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SkinViewer from "@/components/SkinViewer";
 
 export default function Home() {
   const [ign, setIgn] = useState("");
@@ -32,7 +33,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center gap-6 bg-neutral-900 px-6 font-mono">
+    <main className="min-h-screen flex flex-col items-center justify-center gap-6 bg-neutral-900 px-6 font-minecraft">
       <h1 className="text-2xl tracking-wide text-neutral-100">
         Skin Customizer
       </h1>
@@ -62,12 +63,15 @@ export default function Home() {
       {error && <p className="text-sm text-red-400">{error}</p>}
 
       {skinUrl && (
-        <img
-          src={skinUrl}
-          alt={`${ign}'s Minecraft skin`}
-          className="w-32 h-32 border-2 border-neutral-600"
-          style={{ imageRendering: "pixelated" }}
-        />
+        <>
+          <img
+            src={skinUrl}
+            alt={`${ign}'s Minecraft skin`}
+            className="w-32 h-32 border-2 border-neutral-600"
+            style={{ imageRendering: "pixelated" }}
+          />
+          <SkinViewer skinUrl={skinUrl} />
+        </>
       )}
     </main>
   );

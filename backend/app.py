@@ -11,7 +11,6 @@ CORS(app)  # allows the Next.js frontend (different port) to call this API
 
 @app.route("/api/skin/<username>", methods=["GET"])
 def get_skin(username):
-    # Step 1: username -> UUID
     profile_res = requests.get(
         f"https://api.mojang.com/users/profiles/minecraft/{username}"
     )
@@ -20,7 +19,6 @@ def get_skin(username):
 
     uuid = profile_res.json()["id"]
 
-    # Step 2: UUID -> profile (includes base64-encoded skin texture data)
     session_res = requests.get(
         f"https://sessionserver.mojang.com/session/minecraft/profile/{uuid}"
     )
